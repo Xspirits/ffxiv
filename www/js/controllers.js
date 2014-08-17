@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($resource, $scope, $ionicLoading) {
-	var User = $resource('http://localhost:8081/character/:username', {});
+	var API = $resource('http://ffxiv-backend.herokuapp.com/character/:username', {});
 
 	$scope.search = {};
 	$scope.search.query = '';
@@ -29,10 +29,12 @@ angular.module('starter.controllers', [])
 		var lookfor = getQuery();
 		console.info('Searching: ' + lookfor);
 
-		User.get({username:lookfor},function(results) {
+		API
+		.get({username:lookfor}).$promise
+		.then( function(results) {
 			$scope.results = results;
 			$scope.loading = loading.complete();
-		});		
+		});	
 	}
 	getInfos();
 
