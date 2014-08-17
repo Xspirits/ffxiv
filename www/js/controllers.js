@@ -1,42 +1,43 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($resource, $scope, $ionicLoading) {
-	var API = $resource('http://ffxiv-backend.herokuapp.com/character/:username', {});
+	var API = $resource('http://ffxiv-backend.herokuapp.com/character/:username', {
+		username: '@username'
+	});
 
 	$scope.search = {};
 	$scope.search.query = '';
 
-	var loading = {
-		init: function (argument) {
-			$ionicLoading.show({
-				content: 'Loading Data',
-				animation: 'fade-in',
-				showBackdrop: true,
-				maxWidth: 200,
-				showDelay: 500
-			});
-		},
-		complete: function (argument) {
-			$ionicLoading.hide();
-		}
+	var load = function (argument) {
+		$ionicLoading.show({
+			content: 'Loading Data',
+			animation: 'fade-in',
+			showBackdrop: true,
+			maxWidth: 200,
+			showDelay: 500
+		});
+	};
+	var unload = function (argument) {
+		$ionicLoading.hide();
 	};
 
 	var getQuery = function () {
 		return $scope.search.query;
 	}
 	var getInfos = function () {
-		$scope.loading = loading.init();
+		$scope.loading = load();
 		var lookfor = getQuery();
 		console.info('Searching: ' + lookfor);
 
 		API
 		.get({username:lookfor}).$promise
 		.then( function(results) {
+			$scope.loading = unload();
+			console.log(results);
 			$scope.results = results;
-			$scope.loading = loading.complete();
 		});	
 	}
-	getInfos();
+	// getInfos();
 
 	$scope.getInfos = function () {
 		getInfos();
