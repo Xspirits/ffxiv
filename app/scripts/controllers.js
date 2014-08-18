@@ -1,10 +1,7 @@
 'use strict';
 angular.module('FfxivFront.controllers', [])
 
-.controller('DashCtrl', function($resource, $scope, $ionicLoading) {
-	var API = $resource('http://ffxiv-backend.herokuapp.com/character/:username', {
-		username: '@username'
-	});
+.controller('DashCtrl', function($scope, $ionicLoading, API) {
 
 	$scope.search = {};
 	$scope.search.query = '';
@@ -32,8 +29,8 @@ angular.module('FfxivFront.controllers', [])
 		console.info('Searching: ' + lookfor);
 
 		API
-		.get({username:lookfor}).$promise
-		.then( function(results) {
+		.get(lookfor)
+		.then(function (results) {
 			$scope.loading = unload();
 			console.log(results);
 			$scope.results = results;
@@ -47,10 +44,7 @@ angular.module('FfxivFront.controllers', [])
 
 })
 
-.controller('ProfileCtrl', function($resource, $scope,$stateParams, $ionicLoading) {
-	var API = $resource('http://ffxiv-backend.herokuapp.com/character/:id', {
-		id: '@id'
-	});
+.controller('ProfileCtrl', function($scope,$stateParams, $ionicLoading, API) {
 	var load = function () {
 		$ionicLoading.show({
 			content: 'Loading Data',
@@ -66,24 +60,26 @@ angular.module('FfxivFront.controllers', [])
 
 	var getInfos = function (id) {
 		$scope.loading = load();
-
+		var lookfor = parseInt(id,10);
+		console.info('profiler: ' + lookfor);
 		API
-		.get({id:id}).$promise
-		.then( function(results) {
+		.get(lookfor)
+		.then(function (results) {
 			$scope.loading = unload();
 			console.log(results);
-			$scope.player = results;
+			$scope.results = results;
 		});
 	};
+	console.log($stateParams.id);
 	getInfos($stateParams.id);
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
+.controller('FriendsCtrl', function($scope) {
+  $scope.friends = {};
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
+.controller('FriendDetailCtrl', function($scope) {
+  $scope.friend = {};
 })
 
 .controller('AccountCtrl', function($scope) {

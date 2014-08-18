@@ -52,7 +52,7 @@ angular.module('FfxivFront', ['ionic', 'config', 'FfxivFront.controllers', 'Ffxi
     })
 
     .state('tab.profile', {
-      url: '/profile:/id',
+      url: '/profile/:id',
       views: {
         'tab-profile': {
           templateUrl: 'templates/tab-profile.html',
