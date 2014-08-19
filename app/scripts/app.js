@@ -38,6 +38,11 @@ angular.module('FfxivFront', ['ionic', 'config', 'FfxivFront.controllers', 'Ffxi
       abstract: true,
       templateUrl: 'templates/tabs.html'
     })
+    .state('profile', {
+      url: '/profile/:id',
+      templateUrl: 'templates/profile.html',
+      controller: 'ProfileCtrl'
+    })
 
     // Each tab has its own nav history stack:
 
@@ -51,15 +56,6 @@ angular.module('FfxivFront', ['ionic', 'config', 'FfxivFront.controllers', 'Ffxi
       }
     })
 
-    .state('tab.profile', {
-      url: '/profile/:id',
-      views: {
-        'tab-profile': {
-          templateUrl: 'templates/tab-profile.html',
-          controller: 'ProfileCtrl'
-        }
-      }
-    })
     .state('tab.friends', {
       url: '/friends',
       views: {
