@@ -44,7 +44,7 @@ angular.module('FfxivFront', ['ionic', 'config', 'FfxivFront.controllers', 'Ffxi
       controller: 'ProfileCtrl'
     })
 
-    // Each tab has its own nav history stack:
+    //  Each tab has its own nav history stack:
 
     .state('tab.dash', {
       url: '/dash',
