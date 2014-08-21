@@ -1,0 +1,27 @@
+
+
+<ion-view title="{{results.infos.name}}">
+  <ion-content has-header="true" padding="true">
+
+		<div class="list card">
+
+			<div class="item item-avatar">
+				<img src="avatar.jpg">
+				<h2 id="{{results.infos.name}}">
+					{{results.infos.name}}
+				</h2>
+				<p>{{results.infos.infos}}</p>
+			</div>
+
+			<div class="item item-image character">
+			  <img src="{{results.infos.bgImage}}">
+			</div>
+
+			<a class="item item-icon-left assertive" href="#">
+				<i class="icon ion-music-note"></i>
+				Start listening
+			</a>
+
+		</div>
+	</ion-content>
+</ion-view>

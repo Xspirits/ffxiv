@@ -6,3 +6,6 @@
   width: 96px;
   height: 96px;
 }
+.character img {
+	max-width: 360px
+}

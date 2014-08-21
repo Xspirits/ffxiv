@@ -55,6 +55,15 @@ angular.module('FfxivFront', ['ionic', 'config', 'FfxivFront.controllers', 'Ffxi
         }
       }
     })
+    .state('tab.profile', {
+      url: '/profile/:id:infos',
+      views: {
+        'tab-profile': {
+          templateUrl: 'templates/profile-infos.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
 
     .state('tab.friends', {
       url: '/friends',

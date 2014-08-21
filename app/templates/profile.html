@@ -4,13 +4,66 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
+<ion-tabs class="tabs-top tabs-dark has-tab-top ">
 
-<ion-view title="{{results.name}}">
-  <ion-content has-header="true" padding="true">
-		<img ng-src="{{results.img}}">
-		<h2 id="{{results.title}}">
-			{{results.name}}
-		</h2>
-		<p>{{results.server}}</p>
-	</ion-content>
-</ion-view>
+  <ion-tab title="Profile">
+		<ion-view title="{{results.infos.name}}">
+		  <ion-content has-header="true" padding="true">
+
+				<div class="list card">
+
+					<div class="item item-avatar">
+						<img src="avatar.jpg">
+						<h2 id="{{results.infos.name}}">
+							{{results.infos.name}}
+						</h2>
+						<p>{{results.infos.infos}}</p>
+					</div>
+
+					<div class="item item-image character">
+					  <img src="{{results.infos.bgImage}}">
+					</div>
+
+					<a class="item item-icon-left assertive" href="#">
+						follow
+					</a>
+
+				</div>
+			</ion-content>
+		</ion-view>
+  </ion-tab>
+  <ion-tab title="Characteristics">
+		<ion-view title="{{results.infos.name}}">
+		  <ion-content has-header="true" padding="true">
+		  	<div class="card">
+				  <div class="item item-text-wrap">
+				  	<h2>Basics</h2>
+						<div class="row">
+						  <div class="col">hp: {{results.attrs.hp}}</div>
+						  <div class="col">mp: {{results.attrs.mp}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">int: {{results.attrs.int}}</div>
+						  <div class="col">mnd: {{results.attrs.mnd}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">Dexterity: {{results.attrs.dex}}</div>
+						  <div class="col">pie: {{results.attrs.pie}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">str: {{results.attrs.str}}</div>
+						  <div class="col">tp: {{results.attrs.tp}}</div>
+						</div>
+				  </div>
+		  		
+		  	</div>
+
+			</ion-content>
+		</ion-view>
+  </ion-tab>
+
+  <ion-tab title="Settings">
+    <!-- Tab 3 content -->
+  </ion-tab>
+
+</ion-tabs>
