@@ -40,7 +40,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'http://ffxiv-backend.herokuapp.com/'
+            apiEndpoint: 'http://localhost:8081/'
           }
         }
       },
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://ffxiv-backend.herokuapp.com/'
+            apiEndpoint: 'http://localhost:8081/'
           }
         }
       }
@@ -170,7 +170,7 @@ module.exports = function (grunt) {
       }
     },
 
-    
+
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so

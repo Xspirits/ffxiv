@@ -1,0 +1,129 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'firend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<div class="bar bar-header bar-dark">
+  <h1 class="title">{{results.infos.name}} </h1>
+</div>
+<ion-slide-box on-slide-changed="slideHasChanged($index)">
+	<ion-slide>
+		<div class="bar bar-subheader bar-stable">
+			<h2 class="title">{{results.infos.fc.name}}</h2>
+		</div>
+		<div class="box slide-box-header slide-box-sub-header">
+			<div class="card">
+				<div class="item item-avatar">
+					<div ng-if="results.infos.fc.image.length" class="fc-banner-image">
+						<img ng-src="{{results.infos.fc.image[0]}}">
+						<img ng-src="{{results.infos.fc.image[1]}}">
+						<img ng-src="{{results.infos.fc.image[2]}}">
+					</div>
+					<h2 class="title">{{results.infos.fc.name}}</h2>
+					<img ng-src="{{results.infos.cl.image}}" class="pull-right">
+					<p class="sub-title"> {{results.infos.cl.name}}</p>
+				</div>
+
+			</div>
+			<div class="list card">
+
+				<div class="item item-avatar">
+					<img src="{{results.infos.image}}">
+					<h2 class="pull-right text-center">
+						Level
+						<p>
+							{{results.infos.level}}
+						</p>
+					</h2>
+					<h2 id="{{results.infos.name}}">
+						{{results.infos.name}}
+					</h2>
+					<p> {{results.infos.infos}}</p>
+				</div>
+
+				<div class="item item-image character">
+				  <img src="{{results.infos.bgImage}}">
+				</div>
+
+				<!-- <a class="item item-icon-left assertive" href="#">
+					follow
+				</a> -->
+			</div>
+		</div>
+	</ion-slide>
+	<ion-slide>
+		<div class="bar bar-header bar-dark">
+		  <h1 class="title">{{results.infos.name}}</h1>
+		</div>
+		<div class="bar bar-subheader bar-royal">
+		  <h2 class="title">Statistics</h2>
+		</div>
+		<div class="box slide-box-header slide-box-sub-header">
+
+		  	<div class="card">
+				  <div class="item item-text-wrap">
+				  	<h2>Basics</h2>
+						<div class="row">
+						  <div class="col">hp: {{results.attrs.hp}}</div>
+						  <div class="col">mp: {{results.attrs.mp}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">int: {{results.attrs.int}}</div>
+						  <div class="col">mnd: {{results.attrs.mnd}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">Dexterity: {{results.attrs.dex}}</div>
+						  <div class="col">pie: {{results.attrs.pie}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">str: {{results.attrs.str}}</div>
+						  <div class="col">tp: {{results.attrs.tp}}</div>
+						</div>
+				  </div>
+		  	</div>
+
+		  	<div class="card">
+				  <div class="item item-text-wrap">
+				  	<h2>Resistances</h2>
+						<div class="row">
+						  <div class="col">earth: {{results.resistances.earth}}</div>
+						  <div class="col">fire: {{results.resistances.fire}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">ice: {{results.resistances.ice}}</div>
+						  <div class="col">wind: {{results.resistances.wind}}</div>
+						</div>
+						<div class="row">
+						  <div class="col">thunder: {{results.resistances.thunder}}</div>
+						  <div class="col">water: {{results.resistances.water}}</div>
+						</div>
+				  </div>
+		  	</div>
+		</div>
+	</ion-slide>
+	<ion-slide>
+		<div class="bar bar-header bar-dark">
+		  <h1 class="title">{{results.infos.name}}</h1>
+		</div>
+		<div class="bar bar-subheader bar-energized">
+		  <h2 class="title">{{results.mounts.length}} mounts - {{results.minions.length}} minions</h2>
+		</div>
+		<div class="box slide-box-header slide-box-sub-header">
+				<h3>Mounts</h3>
+			<div class="card">
+				<div class="w-50" ng-repeat="mount in results.mounts track by $index">
+					<img ng-src="{{mount.icon}}" class="pull-left"> {{mount.name}}
+				</div>
+			</div>
+				<h3>Minions</h3>
+			<div class="card">
+				<div class="w-50"   ng-repeat="minion in results.minions track by $index">
+					<img ng-src="{{minion.icon}}"class="pull-left"> {{minion.name}}
+				</div>
+
+			</div>
+
+		</div>
+	</ion-slide>
+</ion-slide-box>

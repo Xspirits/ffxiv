@@ -1,0 +1,45 @@
+/* Your app's CSS, go crazy, make it your own */
+
+.ionic-logo {
+  display: block;
+  margin: 15px auto;
+  width: 96px;
+  height: 96px;
+}
+.character img {
+	max-width: 360px
+}
+.slide-box-header {
+  margin-top: 54px;
+}
+.slide-box-header.slide-box-sub-header{
+  margin-top: 98px;
+}
+.w-50 {
+  display: inline-block;
+  width: 50%;
+
+}
+.pull-right {
+  float: right;
+}
+.fc-banner-image img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 70px;
+}
+.bar .sub-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  margin: 34px 10px 0 10px;
+  height: 22px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 15px;
+  line-height: 22px;
+}
