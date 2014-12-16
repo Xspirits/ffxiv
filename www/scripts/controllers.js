@@ -1,68 +1,60 @@
 'use strict';
 angular.module('FfxivFront')
-.controller('DashCtrl', function($scope, $ionicLoading, API) {
-
+.controller('DashCtrl', function( $rootScope, $scope, $ionicLoading, $state, API) {
+	var utils = {};
 	$scope.search = {};
 	$scope.search.query = '';
 
-	var load = function () {
-		$ionicLoading.show({
-			content: 'Loading Data',
-			animation: 'fade-in',
-			showBackdrop: true,
-			maxWidth: 200,
-			showDelay: 500
-		});
-	};
-	var unload = function () {
-		$ionicLoading.hide();
-	};
+	utils.load   = $rootScope.loader.show;
+	utils.unload = $rootScope.loader.hide;
 
-	var getQuery = function () {
+
+	utils.getQuery = function () {
 		return $scope.search.query;
 	};
 
-	var getInfos = function () {
-		$scope.loading = load();
-		var lookfor = getQuery();
+	utils.getInfos = function () {
+		$scope.loading = utils.load();
+		var lookfor = utils.getQuery();
 		console.info('Searching: ' + lookfor);
 
 		API.get(lookfor).then(function (results) {
-			$scope.loading = unload();
+			$scope.loading = utils.unload();
 			console.log(results);
 			$scope.results = results;
 		});
 	};
-
-	$scope.getInfos = getInfos;
+	utils.loadProfile = function (id) {
+		console.log(id);
+		$state.go('profile',{ id: id });
+	}
+	$scope.getInfos    = utils.getInfos;
+	$scope.loadProfile = utils.loadProfile;
 
 })
 
-.controller('ProfileCtrl', function($scope,$stateParams, $ionicLoading, API) {
-	var load = function () {
-		$ionicLoading.show({
-			content: 'Loading Data',
-			animation: 'fade-in',
-			showBackdrop: true,
-			maxWidth: 200,
-			showDelay: 500
-		});
-	};
-	var unload = function () {
-		$ionicLoading.hide();
-	};
+.controller('ProfileCtrl', function($rootScope,  $scope,$stateParams, API) {
+	var utils = {};
+	utils.load   = $rootScope.loader.show;
+	utils.unload = $rootScope.loader.hide;
 
 	var getInfos = function (id) {
-		$scope.loading = load();
-		var lookfor = parseInt(id,10);
+		var lookfor = id;
+		$scope.loading = utils.load();
+
 		console.info('profiler: ' + lookfor);
-		API
-		.get(lookfor)
-		.then(function (results) {
-			$scope.loading = unload();
+
+		API.get(lookfor).then(function (results) {
+			$scope.loading = utils.unload();
 			console.log(results);
 			$scope.results = results;
 		});
+	};
+	$scope.next = function() {
+	  $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2) ;
+	};
+	$scope.previous = function() {
+	  $scope.data.selectedIndex = Math.max($scope.data.selectedIndex - 1, 0);
 	};
 	console.log($stateParams.id);
 	getInfos($stateParams.id);

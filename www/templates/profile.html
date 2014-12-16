@@ -4,32 +4,52 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<div class="bar bar-header bar-dark">
-  <h1 class="title">{{results.infos.name}} </h1>
-</div>
-<ion-slide-box on-slide-changed="slideHasChanged($index)">
-	<ion-slide>
-		<div class="bar bar-subheader bar-stable">
-			<h2 class="title">{{results.infos.fc.name}}</h2>
-		</div>
-		<div class="box slide-box-header slide-box-sub-header">
-			<div class="card">
-				<div class="item item-avatar">
-					<div ng-if="results.infos.fc.image.length" class="fc-banner-image">
-						<img ng-src="{{results.infos.fc.image[0]}}">
-						<img ng-src="{{results.infos.fc.image[1]}}">
-						<img ng-src="{{results.infos.fc.image[2]}}">
+<md-toolbar md-scroll-shrink>
+  <div class="md-toolbar-tools">
+    <h1 class="light">
+      <span>{{results.infos.name}}</span>
+    </h1>
+  </div>
+</md-toolbar>
+<md-tabs class="md-accent" md-selected="data.selectedIndex">
+	<md-tab id="tabProfile" aria-controls="tabProfile-content">
+		Account
+	</md-tab>
+	<md-tab id="tabStats" aria-controls="tabStats-content" ng-disabled="data.secondLocked">
+	 	Statistics
+	</md-tab>
+	<md-tab id="tabMisc" aria-controls="tabMisc-content">
+	  Mounts &amp; Minions
+	</md-tab>
+</md-tabs>
+<ng-switch on="data.selectedIndex" class="tabpanel-container">
+	<div role="tabpanel" id="tabProfile-content" aria-labelledby="tabProfile" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()">
+		<md-content>
+		  <md-subheader class="md-primary">Companies</md-subheader>
+
+			<md-card>
+				<div layout="row" layout-margin layout-align="left center">
+					<div flex="10" style="position:relative">
+						<div ng-if="results.infos.fc.image.length" class="fc-banner-image">
+							<img ng-src="{{results.infos.fc.image[0]}}">
+							<img ng-src="{{results.infos.fc.image[1]}}">
+							<img ng-src="{{results.infos.fc.image[2]}}">
+						</div>
 					</div>
-					<h2 class="title">{{results.infos.fc.name}}</h2>
-					<img ng-src="{{results.infos.cl.image}}" class="pull-right">
-					<p class="sub-title"> {{results.infos.cl.name}}</p>
+					<div flex="85">
+						<h2 class="title">{{results.infos.fc.name}}</h2>
+						<p class="sub-title"> {{results.infos.cl.name}}</p>
+					</div>
+					<div>
+						<img ng-src="{{results.infos.cl.image}}">
+					</div>
 				</div>
-
-			</div>
-			<div class="list card">
+			</md-card>
+		  <md-subheader class="royal">Character</md-subheader>
+			<md-card>
 
 				<div class="item item-avatar">
-					<img src="{{results.infos.image}}">
+					<img ng-src="{{results.infos.image}}">
 					<h2 class="pull-right text-center">
 						Level
 						<p>
@@ -43,87 +63,91 @@
 				</div>
 
 				<div class="item item-image character">
-				  <img src="{{results.infos.bgImage}}">
+				  <img ng-src="{{results.infos.bgImage}}">
 				</div>
 
 				<!-- <a class="item item-icon-left assertive" href="#">
 					follow
 				</a> -->
+			</md-card>
+		</md-content>
+	</div>
+	<div role="tabpanel" id="tabStats-content" aria-labelledby="tabStats" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()">
+	<md-content>
+	  <md-subheader>
+	  	<span class="calm">Basics</span>
+	  </md-subheader>
+		<div class="item item-text-wrap">
+			<div class="row">
+			  <div class="col">hp: {{results.attrs.hp}}</div>
+			  <div class="col">mp: {{results.attrs.mp}}</div>
+			</div>
+			<div class="row">
+			  <div class="col">int: {{results.attrs.int}}</div>
+			  <div class="col">mnd: {{results.attrs.mnd}}</div>
+			</div>
+			<div class="row">
+			  <div class="col">Dexterity: {{results.attrs.dex}}</div>
+			  <div class="col">pie: {{results.attrs.pie}}</div>
+			</div>
+			<div class="row">
+			  <div class="col">str: {{results.attrs.str}}</div>
+			  <div class="col">tp: {{results.attrs.tp}}</div>
 			</div>
 		</div>
-	</ion-slide>
-	<ion-slide>
-		<div class="bar bar-header bar-dark">
-		  <h1 class="title">{{results.infos.name}}</h1>
-		</div>
-		<div class="bar bar-subheader bar-royal">
-		  <h2 class="title">Statistics</h2>
-		</div>
-		<div class="box slide-box-header slide-box-sub-header">
-
-		  	<div class="card">
-				  <div class="item item-text-wrap">
-				  	<h2>Basics</h2>
-						<div class="row">
-						  <div class="col">hp: {{results.attrs.hp}}</div>
-						  <div class="col">mp: {{results.attrs.mp}}</div>
-						</div>
-						<div class="row">
-						  <div class="col">int: {{results.attrs.int}}</div>
-						  <div class="col">mnd: {{results.attrs.mnd}}</div>
-						</div>
-						<div class="row">
-						  <div class="col">Dexterity: {{results.attrs.dex}}</div>
-						  <div class="col">pie: {{results.attrs.pie}}</div>
-						</div>
-						<div class="row">
-						  <div class="col">str: {{results.attrs.str}}</div>
-						  <div class="col">tp: {{results.attrs.tp}}</div>
-						</div>
-				  </div>
-		  	</div>
-
-		  	<div class="card">
-				  <div class="item item-text-wrap">
-				  	<h2>Resistances</h2>
-						<div class="row">
-						  <div class="col">earth: {{results.resistances.earth}}</div>
-						  <div class="col">fire: {{results.resistances.fire}}</div>
-						</div>
-						<div class="row">
-						  <div class="col">ice: {{results.resistances.ice}}</div>
-						  <div class="col">wind: {{results.resistances.wind}}</div>
-						</div>
-						<div class="row">
-						  <div class="col">thunder: {{results.resistances.thunder}}</div>
-						  <div class="col">water: {{results.resistances.water}}</div>
-						</div>
-				  </div>
-		  	</div>
-		</div>
-	</ion-slide>
-	<ion-slide>
-		<div class="bar bar-header bar-dark">
-		  <h1 class="title">{{results.infos.name}}</h1>
-		</div>
-		<div class="bar bar-subheader bar-energized">
-		  <h2 class="title">{{results.mounts.length}} mounts - {{results.minions.length}} minions</h2>
-		</div>
-		<div class="box slide-box-header slide-box-sub-header">
-				<h3>Mounts</h3>
-			<div class="card">
-				<div class="w-50" ng-repeat="mount in results.mounts track by $index">
-					<img ng-src="{{mount.icon}}" class="pull-left"> {{mount.name}}
-				</div>
+	  <md-subheader>
+	  	<span class="royal">Resistances</span>
+	  </md-subheader>
+		<div class="item item-text-wrap">
+			<div class="row">
+			  <div class="col">earth: {{results.resistances.earth}}</div>
+			  <div class="col">fire: {{results.resistances.fire}}</div>
 			</div>
-				<h3>Minions</h3>
-			<div class="card">
-				<div class="w-50"   ng-repeat="minion in results.minions track by $index">
-					<img ng-src="{{minion.icon}}"class="pull-left"> {{minion.name}}
-				</div>
-
+			<div class="row">
+			  <div class="col">ice: {{results.resistances.ice}}</div>
+			  <div class="col">wind: {{results.resistances.wind}}</div>
 			</div>
-
+			<div class="row">
+			  <div class="col">thunder: {{results.resistances.thunder}}</div>
+			  <div class="col">water: {{results.resistances.water}}</div>
+			</div>
 		</div>
-	</ion-slide>
-</ion-slide-box>
+	</md-content>
+	</div>
+	<div role="tabpanel" id="tabMisc-content" aria-labelledby="tabMisc" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()"  style="overflow-y:scroll;height:900px; padding-bottom: 50px">
+		  <md-subheader class="md-primary">Mounts</md-subheader>
+
+			<div layout="row" layout-margin>
+				<md-list flex="100">
+				  <md-item ng-repeat="mount in results.mounts track by $index">
+				    <md-item-content>
+				      <div class="md-tile-left">
+				         <img ng-src="{{mount.icon}}" class="face" >
+				      </div>
+				      <div class="md-tile-content">
+				        <h3>{{mount.name}}</h3>
+				      </div>
+				    </md-item-content>
+				    <md-divider md-inset ng-if="!$last"></md-divider>
+				  </md-item>
+				</md-list>
+			</div>
+		  <md-subheader class="md-primary">Minions</md-subheader>
+
+			<div layout="row" layout-margin>
+				<md-list flex="100">
+					<md-item ng-repeat="minion in results.minions track by $index">
+					  <md-item-content>
+					    <div class="md-tile-left">
+					       <img ng-src="{{minion.icon}}" class="face" >
+					    </div>
+					    <div class="md-tile-content">
+					      <h3>{{minion.name}}</h3>
+					    </div>
+					  </md-item-content>
+					  <md-divider md-inset ng-if="!$last"></md-divider>
+					</md-item>
+				</md-list>
+			</div>
+	</div>
+</ng-switch>
