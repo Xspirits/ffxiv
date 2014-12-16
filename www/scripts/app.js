@@ -6,7 +6,14 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('FfxivFront', ['ionic','config', 'ngResource'])
+angular.module('FfxivFront', [
+    'ionic',
+    'config',
+    'ngResource',
+    'ngAria',
+    'ngAnimate',
+    'ngMaterial'
+  ])
   /* jshint ignore:start */
 
 .run(function($ionicPlatform) {
